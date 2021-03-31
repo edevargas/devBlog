@@ -14,17 +14,17 @@ const AuthorPostsPage = React.lazy(() => import('./pages/AuthorPostsPage'))
 const App: React.FC = () => {
   return (
     <ErrorBoundary>
-    <Suspense fallback={<MiniLoader />}>
-      <Router>
-        <GlobalStyles />
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/author" component={AuthorPostsPage} />     
-            <Route component={NotFoundPage} />
-          </Switch>
-      </Router>
-    </Suspense>
-  </ErrorBoundary>
+      <Suspense fallback={<MiniLoader />}>
+        <Router>
+          <GlobalStyles />
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route exact path="/author" component={AuthorPostsPage} />     
+              <Route component={NotFoundPage} />
+            </Switch>
+        </Router>
+      </Suspense>
+    </ErrorBoundary>
   )
 }
 export default App
