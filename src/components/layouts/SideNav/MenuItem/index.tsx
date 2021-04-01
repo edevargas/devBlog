@@ -1,16 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { LiLink, IconBox, ItemIcon } from './styles'
 
 type SideNavProps = {
     image: string,
     name: string,
     id: number
 }
-const MenuItem: React.FC<SideNavProps> = ({image, name, id}) => {
+const MenuItem: React.FC<SideNavProps> = ({ image, name, id }) => {
     return (
-            <li>
-                <Link to={`/author/${id}`}>{name}</Link>
-            </li>
+        <LiLink>
+            <IconBox>
+                <ItemIcon>
+                    <img src={image} alt={`${name}'s profile photo`} />
+                </ItemIcon>
+            </IconBox>
+            <span>
+                {name}
+            </span>
+        </LiLink>
     )
 }
 export default MenuItem

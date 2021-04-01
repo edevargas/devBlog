@@ -20,6 +20,10 @@ export const GlobalStyles = createGlobalStyle`
 	font-size: 4rem;
 	color: #333;
         }
+        h3 {
+	font-size: 2rem;
+	color: #333;
+        }
         a{
                 text-decoration: none;
                 font-size: 1.6rem
