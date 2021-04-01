@@ -17,7 +17,18 @@
     "allowJs": true,
     "noImplicitAny": false,
     "noResolve": false,
-    "removeComments": true
+    "removeComments": true,
+    "noImplicitThis": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "strictNullChecks": true,
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@styles/*": ["./src/styles/*"]
+  },
   },
   "include": ["./src/**/*"],
   "exclude": [

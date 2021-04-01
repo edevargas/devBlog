@@ -9,20 +9,23 @@ import { MiniLoader } from './components/layouts/MiniLoader'
 import NotFoundPage from './pages/NotFoundPage'
 import { GlobalStyles } from './styles/GlobalStyles'
 import HomePage from './pages/HomePage'
+import Layout from './components/layouts/Layout'
 const AuthorPostsPage = React.lazy(() => import('./pages/AuthorPostsPage'))
 
 const App: React.FC = () => {
   return (
     <ErrorBoundary>
       <Suspense fallback={<MiniLoader />}>
-        <Router>
-          <GlobalStyles />
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/author" component={AuthorPostsPage} />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </Router>
+          <Router>
+          <Layout>
+            <GlobalStyles />
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route exact path="/author/:id" component={AuthorPostsPage} />
+              <Route component={NotFoundPage} />
+            </Switch>
+            </Layout>
+          </Router>
       </Suspense>
     </ErrorBoundary>
   )

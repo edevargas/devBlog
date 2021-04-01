@@ -5,6 +5,7 @@ export const GlobalStyles = createGlobalStyle`
         html {
                 box-sizing: border-box;
                 font-family: 'Montserrat', sans-serif;
+                font-size: 62.5%; /* with this we achive 1rem == 10 px*/
         }
         
         *, *::before, *::after {
@@ -15,8 +16,16 @@ export const GlobalStyles = createGlobalStyle`
         ul, li, h1, h2, h3, p, button {
                 margin: 0;
         }
+        h2 {
+	font-size: 4rem;
+	color: #333;
+        }
         a{
                 text-decoration: none;
+                font-size: 1.6rem
+        }
+        p {
+                font-size: 1.6rem
         }
 
         ul {
@@ -30,32 +39,23 @@ export const GlobalStyles = createGlobalStyle`
                 outline: 0;
         }
 
-        body {
-                color: #333;
-                height: 100vh;
-                margin: 0 auto;
-                overscroll-behavior: none;
-                width: 100%;
-                font-weight: 400;
+        header {
+	width: 100vw;
+	height: 15vh;
+	background-color: white;
+        }
+        main {
+	width: 100vw;
+	height: 70vh;
+	font-size: 1.8rem;
+        background: #f3f3f3;
+        }
+        footer {
+	width: 100vw;
+	height: 15vh;
+	background: #f3f3f3;;
         }
 
-        #app {
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-                overflow-x: hidden;
-                min-height: 100vh;
-                padding-bottom: 10px;
-        }
-        .warn{
-                 color: #f9a264 !important;
-        }
-        .error{
-                color: #ff9595 !important;
-                
-        }
-        .success{
-                color: #6c9a06 !important;    
-        }
-        .align-center{
-           text-align: center;     
-        }
+        
+        
         `
