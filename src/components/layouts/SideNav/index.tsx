@@ -1,16 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
-const SideNav: React.FC = () => {
+import { Person } from '../../../models/author'
+import MenuItem from './MenuItem'
+type SideNavProps = {
+    menus: Array<Person>
+}
+const SideNav: React.FC<SideNavProps> = ({menus}) => {
     return (
         <nav>
             <ul>
-                <li><Link to="/author/1">Eren Jeager</Link></li>
-                <li><Link to="/author/2">Levi Ackerman</Link></li>
-                <li><Link to="/author/3">Mikasa Ackerman</Link></li>
-                <li><Link to="/author/4">Armin Alert</Link></li>
-                <li><Link to="/author/5">Erwin Smith</Link></li>
-                <li><Link to="/author/6">Annie Leonhart</Link></li>
+                {menus.map(menu => (
+                <MenuItem
+                    key={menu.id}
+                    image={menu.image}
+                    name={menu.name}
+                    id={menu.id} />
+                ))}
             </ul>
         </nav>
     )
