@@ -1,5 +1,5 @@
 import React from 'react'
-import { LiLink, IconBox, ItemIcon } from './styles'
+import { LinkContainer, IconBox, ItemIcon } from './styles'
 
 type SideNavProps = {
     image: string,
@@ -7,6 +7,14 @@ type SideNavProps = {
     id: number
 }
 const MenuItem: React.FC<SideNavProps> = ({ image, name, id }) => {
+    const LiLink = ({ children }) => (
+        <li>
+            <LinkContainer to={`/authors/${id}`}>
+                {children}
+            </LinkContainer>
+        </li>
+    )
+
     return (
         <LiLink>
             <IconBox>

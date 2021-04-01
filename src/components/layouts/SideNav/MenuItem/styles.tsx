@@ -1,14 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import React from 'react'
 
-export const LiLink = ({ children }) => (
-  <li>
-    <LinkContainer>
-      {children}
-    </LinkContainer>
-  </li>
-)
 export const LinkContainer = styled(Link)`
   color: white;
   padding: 10px 15px;
