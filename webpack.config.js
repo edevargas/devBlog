@@ -1,7 +1,9 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const mode = process.env.ENV || 'development';
 
 module.exports = {
+  mode,
   entry: './src/index.tsx',
   output: {
     path: path.join(__dirname, 'dist/'),

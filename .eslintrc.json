@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "eslint:recommended",
@@ -21,20 +22,40 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "@typescript-eslint/no-implicit-any-catch": "off",
-        "@typescript-eslint/object-curly-spacing": ["error", "always"],
-        "no-unused-vars": ["warn", { "varsIgnorePattern": "^_" }],
-        "@typescript-eslint/no-unused-vars": ["warn", { "varsIgnorePattern": "^_" , "ignoreRestSiblings": true }],
+         /* disabled */
         "no-case-declarations": "off",
         "@typescript-eslint/no-var-requires": 0,
-        "indent": [
+        "no-shadow": "off",
+        "react/prop-types": "off",
+        "no-use-before-define": "off",
+        "import/prefer-default-export": "off",
+        "@typescript-eslint/no-implicit-any-catch": "off",
+        /* warns */
+        "max-len": ["warn", { "code": 90 }],
+        "react-hooks/exhaustive-deps": "warn",
+        "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+        "no-unused-vars": ["warn", { "varsIgnorePattern": "^_" }],
+        "@typescript-eslint/no-unused-vars": ["warn", { "varsIgnorePattern": "^_" , "ignoreRestSiblings": true }],
+        /* errors */
+        "indent": ["error", 2],
+        "@typescript-eslint/object-curly-spacing": ["error", "always"],
+        "linebreak-style": ["error", "windows"],
+        "react-hooks/rules-of-hooks": "error",
+        "@typescript-eslint/no-shadow": ["error"],
+        "@typescript-eslint/no-use-before-define": ["error"],
+        "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+        "import/extensions": [
             "error",
-            2
-        ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
+            "ignorePackages",
+        {
+            "ts": "never",
+            "tsx": "never"
+        }],
+        "@typescript-eslint/explicit-function-return-type": [
+        "error",
+        {
+            "allowExpressions": true
+        }],
         "quotes": [
             "error",
             "single"

@@ -17,11 +17,11 @@ const App: React.FC = () => {
       <Suspense fallback={<MiniLoader />}>
         <Router>
           <GlobalStyles />
-            <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route exact path="/author" component={AuthorPostsPage} />     
-              <Route component={NotFoundPage} />
-            </Switch>
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/author" component={AuthorPostsPage} />
+            <Route component={NotFoundPage} />
+          </Switch>
         </Router>
       </Suspense>
     </ErrorBoundary>
