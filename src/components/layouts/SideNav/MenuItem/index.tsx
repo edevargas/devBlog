@@ -9,7 +9,7 @@ type SideNavProps = {
 const MenuItem: React.FC<SideNavProps> = ({ image, name, id }) => {
     const LiLink = ({ children }) => (
         <li>
-            <LinkContainer to={`/authors/${id}`}>
+            <LinkContainer to={`/author/${id}`}>
                 {children}
             </LinkContainer>
         </li>
