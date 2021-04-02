@@ -6,7 +6,8 @@ export const GlobalStyles = createGlobalStyle`
                 box-sizing: border-box;
                 font-family: 'Montserrat', sans-serif;
                 font-size: 62.5%; /* with this we achive 1rem == 10 px*/
-                background: #ebf5f7;
+                //background: #ebf5f7;
+                background: #f6f9fe;
         }
         
         *, *::before, *::after {

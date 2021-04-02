@@ -125,6 +125,14 @@ theme = {
       rounded: {
         borderRadius: 20
       }
+    },
+    MuiTypography: {
+      body1: {
+        fontSize: 16
+      },
+      body2: {
+        fontSize: 14
+      }
     }
   }
 }
