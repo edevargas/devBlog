@@ -117,7 +117,8 @@ theme = {
     },
     MuiInputBase: {
       root: {
-        fontSize: 16
+        fontSize: 16,
+        color: theme.palette.secondary.dark
       }
     },
     MuiPaper: {

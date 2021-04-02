@@ -29,7 +29,7 @@ const TextFieldSearch: React.FC<TextFieldSearchProps> = ({ placeholder, ariaLabe
 
     return (
         <Paper component="form" className={classes.root} >
-            <IconButton type="submit" className={classes.iconButton} aria-label="search">
+            <IconButton type="submit" color="secondary" className={classes.iconButton} aria-label="search">
                 <SearchIcon />
             </IconButton>
             <InputBase
