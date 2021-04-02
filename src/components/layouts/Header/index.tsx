@@ -11,7 +11,7 @@ const Header: React.FC = () => {
             <IconButton color="primary" aria-label="See all authors">
                 <PeopleIcon fontSize="large" />
             </IconButton>
-            <TextFieldSearch />
+            <TextFieldSearch placeholder="Search by Title" ariaLabel="Search by publication Title" />
             <IconButton color="primary" aria-label="Change order by date">
                 <ExpandMoreIcon fontSize="large" />
             </IconButton>

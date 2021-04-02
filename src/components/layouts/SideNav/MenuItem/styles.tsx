@@ -2,16 +2,19 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const LinkContainer = styled(Link)`
-  color: white;
+${({ theme }) => `
+        color: ${theme.palette.primary.main};
+        background-color: white;
+        &:hover {
+          color: white;
+          background: ${theme.palette.primary.light};
+  }
+    `}
   padding: 10px 15px;
   display: flex;
   height: 5rem;
   align-items: center;
-  background: #d69595;
   cursor: pointer;
-  &:hover {
-    background: #9e6767;
-  }
 `
 export const IconBox = styled.span`
   padding-right: 15px;

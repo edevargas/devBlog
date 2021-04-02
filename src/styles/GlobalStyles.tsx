@@ -6,6 +6,7 @@ export const GlobalStyles = createGlobalStyle`
                 box-sizing: border-box;
                 font-family: 'Montserrat', sans-serif;
                 font-size: 62.5%; /* with this we achive 1rem == 10 px*/
+                background: #ebf5f7;
         }
         
         *, *::before, *::after {
@@ -46,18 +47,15 @@ export const GlobalStyles = createGlobalStyle`
         header {
 	width: 100vw;
 	height: 15vh;
-	background-color: white;
         }
         main {
 	width: 100%;
 	height: 70vh;
 	font-size: 1.8rem;
-        background: #f3f3f3;
         }
         footer {
 	width: 100%;
 	height: 15vh;
-	background: #f3f3f3;;
         }
 
         

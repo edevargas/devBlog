@@ -18,26 +18,26 @@ const useStyles = makeStyles((theme) => ({
     },
     iconButton: {
         padding: 10,
-    },
-    divider: {
-        height: 28,
-        margin: 4
     }
 }));
-
-export default function CustomizedInputBase() {
+type TextFieldSearchProps = {
+    placeholder: string;
+    ariaLabel: string;
+}
+const TextFieldSearch: React.FC<TextFieldSearchProps> = ({ placeholder, ariaLabel }) => {
     const classes = useStyles();
 
     return (
-        <Paper component="form" className={classes.root}>
+        <Paper component="form" className={classes.root} >
             <IconButton type="submit" className={classes.iconButton} aria-label="search">
                 <SearchIcon />
             </IconButton>
             <InputBase
                 className={classes.input}
-                placeholder="Search by Title"
-                inputProps={{ 'aria-label': 'Search by Title' }}
+                placeholder={placeholder}
+                inputProps={{ 'aria-label': ariaLabel }}
             />
         </Paper>
     );
 }
+export default TextFieldSearch

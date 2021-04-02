@@ -1,13 +1,13 @@
 import React from 'react'
 import { Person } from '../../../models/author'
 import MenuItem from './MenuItem'
-import { Nav, Ul, NavHeader } from './styles'
+import { Ul, NavHeader } from './styles'
 type SideNavProps = {
     menus: Array<Person>
 }
 const SideNav: React.FC<SideNavProps> = ({ menus }) => {
     return (
-        <Nav>
+        <nav>
             <NavHeader>
                 <h3>Ahtors</h3>
                 <input type="text" />
@@ -21,7 +21,7 @@ const SideNav: React.FC<SideNavProps> = ({ menus }) => {
                         id={menu.id} />
                 ))}
             </Ul>
-        </Nav>
+        </nav>
     )
 }
 export default SideNav
