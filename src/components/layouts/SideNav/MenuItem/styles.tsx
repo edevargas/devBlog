@@ -14,7 +14,7 @@ export const LinkContainer = styled(Link)`
   }
 `
 export const IconBox = styled.span`
-  padding: 0 10px;
+  padding-right: 15px;
 `
 export const ItemIcon = styled.figure`
   width:3rem;

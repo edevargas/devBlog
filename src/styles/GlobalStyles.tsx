@@ -28,7 +28,7 @@ export const GlobalStyles = createGlobalStyle`
                 text-decoration: none;
                 font-size: 1.6rem
         }
-        p {
+        p, input, span {
                 font-size: 1.6rem
         }
 
@@ -49,13 +49,13 @@ export const GlobalStyles = createGlobalStyle`
 	background-color: white;
         }
         main {
-	width: 100vw;
+	width: 100%;
 	height: 70vh;
 	font-size: 1.8rem;
         background: #f3f3f3;
         }
         footer {
-	width: 100vw;
+	width: 100%;
 	height: 15vh;
 	background: #f3f3f3;;
         }
