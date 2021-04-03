@@ -13,7 +13,7 @@ const Layout: React.FC = ({ children }) => {
     return (
         <>
             <Header handleOpenSidenav={handleSidenavToggle} isSidenavOpen={isSidenavOpen} />
-            <SideNav open={isSidenavOpen} menus={AUTHORS} />
+            <SideNav open={isSidenavOpen} authors={AUTHORS} />
             <main>
                 {children}
             </main>

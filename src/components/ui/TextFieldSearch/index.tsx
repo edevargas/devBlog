@@ -23,8 +23,10 @@ const useStyles = makeStyles((theme) => ({
 type TextFieldSearchProps = {
     placeholder: string;
     ariaLabel: string;
+    value: string
+    onChange: Function
 }
-const TextFieldSearch: React.FC<TextFieldSearchProps> = ({ placeholder, ariaLabel }) => {
+const TextFieldSearch: React.FC<TextFieldSearchProps> = ({ value, placeholder, ariaLabel, onChange }) => {
     const classes = useStyles();
 
     return (
@@ -33,6 +35,8 @@ const TextFieldSearch: React.FC<TextFieldSearchProps> = ({ placeholder, ariaLabe
                 <SearchIcon />
             </IconButton>
             <InputBase
+                value={value}
+                onChange={(e) => onChange(e)}
                 className={classes.input}
                 placeholder={placeholder}
                 inputProps={{ 'aria-label': ariaLabel }}

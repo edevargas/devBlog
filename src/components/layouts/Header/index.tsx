@@ -11,6 +11,11 @@ type HeaderProps = {
     isSidenavOpen: boolean
 }
 const Header: React.FC<HeaderProps> = ({ handleOpenSidenav, isSidenavOpen }) => {
+    const [filterValue, setFilterValue] = useState('')
+
+    const onFilterChange = e => {
+        setFilterValue(e.target.value)
+    }
     const fillLefttButton = () => (
         <IconButton
             onClick={() => handleOpenSidenav()}
@@ -22,10 +27,15 @@ const Header: React.FC<HeaderProps> = ({ handleOpenSidenav, isSidenavOpen }) => 
 
         </IconButton>
     )
+
     return (
         <HeaderContainer>
             {fillLefttButton()}
-            <TextFieldSearch placeholder="Search by Title" ariaLabel="Search by publication Title" />
+            <TextFieldSearch
+                onChange={onFilterChange}
+                value={filterValue}
+                placeholder="Search by Title"
+                ariaLabel="Search by publication Title" />
             <IconButton color="primary" aria-label="Change order by date">
                 <ExpandMoreIcon fontSize="large" />
             </IconButton>
