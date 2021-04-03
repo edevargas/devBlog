@@ -1,20 +1,18 @@
 import { Person } from "./author"
 
-export class Publication  {
+export class Publication {
     id: number
     title: string
     date: Date
     authorId?: number
     description: string
-    author?: any
+    author?: any | null
     image: string
-    constructor({id, title, date, authorId, description, image, author}){
+    constructor({ id, title, date, description, image }) {
         this.id = id
         this.title = title
         this.date = date
-        this.authorId = authorId
         this.description = description
         this.image = image
-        this.author = author
     }
 }
