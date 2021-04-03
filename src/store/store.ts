@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { PostsSlice } from '../reducers/postsReducer'
-
+import { getDefaultMiddleware } from '@reduxjs/toolkit'
+const customizedMiddleware = getDefaultMiddleware({
+    serializableCheck: false
+})
 const store = configureStore({
     reducer: {
-        posts: PostsSlice.reducer
+        posts: PostsSlice.reducer,
+        middleware: (getDefaultMiddleware) => customizedMiddleware
     }
 })
 

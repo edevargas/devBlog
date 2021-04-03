@@ -30,7 +30,7 @@ const ListOfPostCard: React.FC<ListOfPostCardProps> = ({ posts }) => {
     return (
         <ListContainer>
             {posts.map(post => (
-                <CardBox>
+                <CardBox key={post.id}>
                     <PostCard {...mapPostCardProps(post)} />
                 </CardBox>
 

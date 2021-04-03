@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../store/store'
 import { Publication } from '../models/publication'
+import { filterContains } from '../utils/listUtils'
 
 interface PostsState {
     posts: Publication[] | []
@@ -21,13 +22,12 @@ export const PostsSlice = createSlice({
     initialState,
     reducers: {
         setPosts: (state, action: PayloadAction<Publication[]>) => {
-            console.log('payload ', action.payload)
             state.posts = action.payload
             state.filteredPosts = action.payload
             state.loading = false
             state.error = null
         },
-        setFilteredPosts: (state, action: PayloadAction<Publication[]>) => {
+        filterPosts: (state, action: PayloadAction<Publication[]>) => {
             state.filteredPosts = action.payload
             state.loading = false
         },
@@ -42,7 +42,7 @@ export const PostsSlice = createSlice({
     },
 })
 
-export const { setPosts, setFilteredPosts, loading, setError } = PostsSlice.actions
+export const { setPosts, filterPosts, loading, setError } = PostsSlice.actions
 
 export const selectPosts = (state: RootState) => state.posts
 

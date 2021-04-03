@@ -1,15 +1,23 @@
-import { useAppDispatch } from "../hooks/redux"
+import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { Publication } from "../models/publication"
 import { PostsSlice } from "../reducers/postsReducer"
 import { AUTHORS } from "../utils/dataDummy"
+import { filterContains } from "../utils/listUtils"
 
 const usePostActions = () => {
-
+    const { posts } = useAppSelector((state) => state.posts)
     const dispatch = useAppDispatch()
+
     const getPosts = async () => {
         const posts = mapListOfPostCardProps()
         dispatch(PostsSlice.actions.setPosts(posts))
     }
+
+    const filterPosts = async (value: string) => {
+        const filteredPost = filterContains(posts, value, ['title'])
+        dispatch(PostsSlice.actions.filterPosts(filteredPost))
+    }
+
     const mapListOfPostCardProps = () => {
         let postsMapped: Publication[] = []
         for (let author of AUTHORS) {
@@ -30,7 +38,7 @@ const usePostActions = () => {
         return postsMapped
     }
 
-    return { getPosts }
+    return { getPosts, filterPosts }
 }
 
 export default usePostActions

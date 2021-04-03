@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { HeaderContainer } from './styles'
 import PeopleIcon from '@material-ui/icons/People';
 import IconButton from '@material-ui/core/IconButton';
 import TextFieldSearch from '../../ui/TextFieldSearch';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import usePostActions from '../../../actions/postsActions';
 
 type HeaderProps = {
     handleOpenSidenav: Function,
@@ -12,6 +13,11 @@ type HeaderProps = {
 }
 const Header: React.FC<HeaderProps> = ({ handleOpenSidenav, isSidenavOpen }) => {
     const [filterValue, setFilterValue] = useState('')
+    const { filterPosts } = usePostActions()
+
+    useEffect(() => {
+        filterPosts(filterValue)
+    }, [filterValue])
 
     const onFilterChange = e => {
         setFilterValue(e.target.value)
