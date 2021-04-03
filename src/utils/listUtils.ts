@@ -36,5 +36,6 @@ const compare = (a: number | string, b: number | string, isAsc: boolean) => {
  */
 export const sortData = (list, attribute: string, direction: string): any[] => {
     const isAsc = direction === 'ASC';
-    return list.sort((a, b) => compare(a[attribute], b[attribute], isAsc));
+    const copyList = [...list]
+    return copyList.sort((a, b) => compare(a[attribute], b[attribute], isAsc));
 }
