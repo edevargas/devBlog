@@ -51,7 +51,7 @@ export const GlobalStyles = createGlobalStyle`
         }
         main {
 	width: 100%;
-	height: 70vh;
+	min-height: 70vh;
 	font-size: 1.8rem;
         }
         footer {

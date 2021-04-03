@@ -3,14 +3,18 @@ import { Publication } from "./publication"
 export class Person  {
     id: number
     name: string
+    lastname: string
     image: string
     email: string
-    publications?: Array<Publication>
-    constructor(id, name, image, email, publications){
+    posts?: Array<Publication> | null
+    birthDate: Date
+    constructor({id, name, lastname, image, email, posts, birthDate}){
         this.id = id
         this.name = name
+        this.lastname = lastname
         this.image = image
         this.email = email
-        this.publications = publications
+        this.posts = posts
+        this.birthDate = birthDate
     }
 }

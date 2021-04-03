@@ -1,21 +1,25 @@
-import PostCard from '../../components/PostCard'
 import React from 'react'
+import ListOfPostCard from '../../components/ListOfPostCard'
+import { Publication } from '../../models/publication'
+import { AUTHORS } from '../../utils/dataDummy'
 
 const HomePage: React.FC = () => {
-    const currentDate = new Date()
-    const id = 1
-    const gravatar: string = 'https://www.gravatar.com/avatar/464c4cd355c42b5f432bdca8de1a1226?s=32&d=identicon&r=PG'
+    const mapListOfPostCardProps = () => {
+        const postsMapped: Publication[] = []
+        for (let author of AUTHORS) {
+            for (let post of author.posts) {
+                const authorCopy = { ...author }
+                authorCopy.posts = []
+                post.author = authorCopy
+                postsMapped.push(post)
+            }
+        }
+        return postsMapped
+    }
+
     return (<>
-        <p>Home Page activated</p>
-        <PostCard id={id}
-            name="Eren"
-            lastname="Jeager"
-            email="eren@eren"
-            profilePhoto={gravatar}
-            image="https://source.unsplash.com/random"
-            date={currentDate.toISOString()}
-            title="Post title"
-        />
+        <ListOfPostCard posts={mapListOfPostCardProps()} />
+
     </>)
 }
 

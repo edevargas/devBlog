@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom'
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            maxWidth: 345
+            width: '100%'
         },
         header: {
             fontSize: 16

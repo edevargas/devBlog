@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { authors } from '../../../utils/dataDummy'
+import { AUTHORS } from '../../../utils/dataDummy'
 import Footer from '../Footer'
 import Header from '../Header'
 import SideNav from '../SideNav'
@@ -13,7 +13,7 @@ const Layout: React.FC = ({ children }) => {
     return (
         <>
             <Header handleOpenSidenav={handleSidenavToggle} isSidenavOpen={isSidenavOpen} />
-            <SideNav open={isSidenavOpen} menus={authors} />
+            <SideNav open={isSidenavOpen} menus={AUTHORS} />
             <main>
                 {children}
             </main>
