@@ -2,6 +2,7 @@ import PostCard from '../../components/PostCard'
 import React from 'react'
 import { Publication } from '../../models/publication'
 import { CardBox, ListContainer } from './styles'
+import { dateToReadableFormat, dateToReadableFormatUTC, timestampToDate } from '../../utils/datesUtil'
 
 type ListOfPostCardProps = {
     posts: Array<Publication>
@@ -15,13 +16,15 @@ const ListOfPostCard: React.FC<ListOfPostCardProps> = ({ posts }) => {
         const id = p.id
         const title = p.title
         const description = p.description
-        const date = p.date.toISOString()
+        const dateConverted = timestampToDate(p.date)
+        console.log(dateConverted)
+        const dateFormatted = dateToReadableFormat(dateConverted)
         const image = p.image
         return {
             id,
             title,
             description,
-            date,
+            date: dateFormatted,
             image,
             name, lastname, profilePhoto, email
         }

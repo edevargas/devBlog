@@ -1,14 +1,14 @@
 import { Publication } from "./publication"
 
-export class Person  {
+export class Person {
     id: number
     name: string
     lastname: string
     image: string
     email: string
     posts?: Array<Publication> | null
-    birthDate: Date
-    constructor({id, name, lastname, image, email, posts, birthDate}){
+    birthDate: number
+    constructor({ id, name, lastname, image, email, posts, birthDate }) {
         this.id = id
         this.name = name
         this.lastname = lastname
