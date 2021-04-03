@@ -17,7 +17,6 @@ const ListOfPostCard: React.FC<ListOfPostCardProps> = ({ posts }) => {
         const title = p.title
         const description = p.description
         const dateConverted = timestampToDate(p.date)
-        console.log(dateConverted)
         const dateFormatted = dateToReadableFormat(dateConverted)
         const image = p.image
         return {
