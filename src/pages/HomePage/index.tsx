@@ -12,9 +12,7 @@ const HomePage: React.FC = () => {
     }, [])
 
     const fetchPosts = async () => {
-        if (filteredPosts.length == 0 && !loading) {
-            getPosts()
-        }
+        getPosts()
     }
 
     return (<>

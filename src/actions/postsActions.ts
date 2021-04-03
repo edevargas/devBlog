@@ -13,6 +13,20 @@ const usePostActions = () => {
         dispatch(PostsSlice.actions.setPosts(posts))
     }
 
+    const getPostsByUserId = async (userId: number) => {
+        console.log(userId)
+        const idx = AUTHORS.findIndex(a => a.id === userId)
+        console.log({ idx })
+        const posts = AUTHORS[idx].posts
+        const authorCopy = { ...AUTHORS[idx] }
+        authorCopy.posts = []
+        const postsWithAuthor = posts.map(p => {
+            return { ...p, author: authorCopy }
+        })
+        console.log({ postsWithAuthor })
+        dispatch(PostsSlice.actions.setPosts(postsWithAuthor))
+    }
+
     const filterPosts = async (value: string) => {
         const filteredPost = filterContains(posts, value, ['title'])
         dispatch(PostsSlice.actions.filterPosts(filteredPost))
@@ -38,7 +52,7 @@ const usePostActions = () => {
         return postsMapped
     }
 
-    return { getPosts, filterPosts }
+    return { getPosts, filterPosts, getPostsByUserId }
 }
 
 export default usePostActions
