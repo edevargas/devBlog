@@ -6,9 +6,10 @@ import { Ul, NavHeader, SideNavTitle } from './styles'
 import { filterContains } from '../../../utils/listUtils'
 type SideNavProps = {
     authors: Array<Person>,
-    open: boolean
+    open: boolean,
+    notifySelection: Function
 }
-const SideNav: React.FC<SideNavProps> = ({ authors, open }) => {
+const SideNav: React.FC<SideNavProps> = ({ authors, open, notifySelection }) => {
     const [filterValue, setFilterValue] = useState('')
     const [menus, setMenus] = useState(authors)
 
@@ -38,7 +39,8 @@ const SideNav: React.FC<SideNavProps> = ({ authors, open }) => {
                                 key={menu.id}
                                 image={menu.image}
                                 name={`${menu.name} ${menu.lastname}`}
-                                id={menu.id} />
+                                id={menu.id}
+                                notifySelection={notifySelection} />
                         ))}
                     </Ul>
                 </nav>

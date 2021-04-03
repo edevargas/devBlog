@@ -4,12 +4,13 @@ import { LinkContainer, IconBox, ItemIcon } from './styles'
 type SideNavProps = {
     image: string,
     name: string,
-    id: number
+    id: number,
+    notifySelection: Function
 }
-const MenuItem: React.FC<SideNavProps> = ({ image, name, id }) => {
+const MenuItem: React.FC<SideNavProps> = ({ image, name, id, notifySelection }) => {
     const LiLink = ({ children }) => (
         <li>
-            <LinkContainer to={`/author/${id}`}>
+            <LinkContainer onClick={() => notifySelection()} to={`/author/${id}`}>
                 {children}
             </LinkContainer>
         </li>
