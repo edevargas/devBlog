@@ -3,22 +3,37 @@ import React, { useEffect } from 'react'
 import usePostActions from '../../actions/postsActions'
 import { useAppSelector } from '../../hooks/redux'
 import { useParams } from 'react-router-dom';
+import usePeopleActions from '../../actions/peopleActions';
 
 const HomePage: React.FC = () => {
     const { id } = useParams()
-    const { loading, filteredPosts, error } = useAppSelector((state) => state.posts)
+    const { loading: loadingPosts, filteredPosts, error: errorPosts } = useAppSelector((state) => state.posts)
+    const { loading: LoadingPeople, people, error: errorPeople } = useAppSelector((state) => state.people)
     const { getPostsByUserId } = usePostActions()
+    const { findAndSelectPersonById, getPeople } = usePeopleActions()
 
     useEffect(() => {
-        fetchPosts()
+        fetchData()
     }, [id])
 
-    const fetchPosts = async () => {
+    const fetchData = async () => {
+
+        await getPeople()
+
+        await findAndSelectPersonById(+id)
         getPostsByUserId(+id)
     }
 
+    const fillContent = () => {
+        loadingPosts && <p>Loading..</p>
+        errorPosts && <p>{errorPosts}</p>
+        errorPeople && <p>{errorPeople}</p>
+        return (<ListOfPostCard posts={filteredPosts} />)
+
+    }
+
     return (<>
-        <ListOfPostCard posts={filteredPosts} />
+        {fillContent()}
     </>)
 }
 

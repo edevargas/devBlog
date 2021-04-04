@@ -47,7 +47,6 @@ export const GlobalStyles = createGlobalStyle`
 
         header {
 	width: 100vw;
-	height: 15vh;
         }
         main {
 	width: 100%;
@@ -55,6 +54,8 @@ export const GlobalStyles = createGlobalStyle`
 	font-size: 1.8rem;
         }
         footer {
+                display: flex;
+                justify-content: center;
 	width: 100%;
 	height: 15vh;
         }
