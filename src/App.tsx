@@ -11,6 +11,7 @@ import { GlobalStyles } from './styles/GlobalStyles'
 import Layout from './components/layouts/Layout'
 const AuthorPostsPage = React.lazy(() => import('./pages/AuthorPostsPage'))
 const HomePage = React.lazy(() => import('./pages/HomePage'))
+const PostDetailPage = React.lazy(() => import('./pages/PostDetailPage'))
 
 const App: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const App: React.FC = () => {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route exact path="/author/:id" component={AuthorPostsPage} />
+              <Route exact path="/post/:id" component={PostDetailPage} />
               <Route component={NotFoundPage} />
             </Switch>
           </Layout>

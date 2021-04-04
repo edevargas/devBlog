@@ -6,6 +6,7 @@ import { filterContains } from '../utils/listUtils'
 interface PostsState {
     posts: Publication[] | []
     filteredPosts: Publication[] | []
+    selectedPost: Publication | null
     loading: boolean
     error: string | null
 }
@@ -13,6 +14,7 @@ interface PostsState {
 const initialState: PostsState = {
     posts: [],
     filteredPosts: [],
+    selectedPost: null,
     loading: false,
     error: null
 }
@@ -30,6 +32,11 @@ export const PostsSlice = createSlice({
         filterPosts: (state, action: PayloadAction<Publication[]>) => {
             state.filteredPosts = action.payload
             state.loading = false
+        },
+        setSelectedPost: (state, action: PayloadAction<Publication>) => {
+            state.selectedPost = action.payload
+            state.loading = false
+            state.error = null
         },
         loading: (state) => {
             state.loading = true

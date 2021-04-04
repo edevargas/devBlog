@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import { Publication } from "../models/publication"
 import { PostsSlice } from "../reducers/postsReducer"
 import { AUTHORS } from "../utils/dataDummy"
+import { dateToReadableFormat, timestampToDate } from "../utils/datesUtil"
 import { filterContains, sortData } from "../utils/listUtils"
 
 const usePostActions = () => {
@@ -13,10 +14,21 @@ const usePostActions = () => {
         dispatch(PostsSlice.actions.setPosts(posts))
     }
 
+    const getPostsById = async (id: number) => {
+        const posts = mapListOfPostCardProps()
+        const idx = posts.findIndex(p => p.id === id)
+        if (idx >= 0) {
+            const dateConverted = timestampToDate(posts[idx].date)
+            const dateFormatted = dateToReadableFormat(dateConverted)
+            posts[idx].dateFormatted = dateFormatted
+            dispatch(PostsSlice.actions.setSelectedPost(posts[idx]))
+        } else {
+            dispatch(PostsSlice.actions.setError(`Post with id ${id} wasn't found`))
+        }
+    }
+
     const getPostsByUserId = async (userId: number) => {
-        console.log(userId)
         const idx = AUTHORS.findIndex(a => a.id === userId)
-        console.log({ idx })
         const posts = AUTHORS[idx].posts
         const authorCopy = { ...AUTHORS[idx] }
         authorCopy.posts = []
@@ -56,7 +68,7 @@ const usePostActions = () => {
         return postsMapped
     }
 
-    return { getPosts, filterPosts, getPostsByUserId, sortPosts }
+    return { getPosts, filterPosts, getPostsByUserId, sortPosts, getPostsById }
 }
 
 export default usePostActions
