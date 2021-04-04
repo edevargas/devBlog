@@ -26,6 +26,9 @@ module.exports = {
               "@babel/preset-react",
               "@babel/preset-typescript",
             ],
+            plugins: [
+              'babel-plugin-styled-components'
+            ]
           },
         },
       },
@@ -39,7 +42,8 @@ module.exports = {
   optimization: {
     splitChunks: {
       chunks: 'all',
-      maxSize: 244,
+      maxSize: 244000,
+      minSize: 19500,
       cacheGroups: {
         defaultVendors: {
           filename: '[name].bundle.js',
