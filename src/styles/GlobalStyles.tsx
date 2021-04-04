@@ -15,7 +15,7 @@ export const GlobalStyles = createGlobalStyle`
 	        margin: 0;
 	        padding: 0;
         }
-        body{
+        #root{
                 margin: 0 auto;
                 max-width: 800px;
         }

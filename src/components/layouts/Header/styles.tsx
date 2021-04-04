@@ -4,7 +4,6 @@ export const HeaderContainer = styled.header`
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 10px 15px;
 `
 interface MainHeaderProps {
     readonly accentBg: boolean;
@@ -24,6 +23,7 @@ ${({ theme }) => `
     align-items: center;
     height: 5rem;
     width: 100%;
+    padding: 10px 15px;
 `
 export const AuthorHeaderContainer = styled.div`
     display: flex;
