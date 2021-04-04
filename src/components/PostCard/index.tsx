@@ -60,8 +60,8 @@ const PostCard: React.FC<PostCardProps> = ({
     )
 
     return (
-        <Link to={`/post/${id}`}>
-            <Card className={classes.root}>
+        <Card className={classes.root}>
+            <Link to={`/author/${id}`}>
                 <CardHeader
                     color="secondary"
                     className={classes.header}
@@ -74,29 +74,33 @@ const PostCard: React.FC<PostCardProps> = ({
                     title={`${name} ${lastname}`}
                     subheader={email}
                 />
+            </Link>
+            <Link to={`/post/${id}`}>
                 <CardMedia
                     className={classes.media}
                     image={image}
                     title={`Photo of ${title} post`}
                 />
-                <CardContent>
+            </Link>
+            <CardContent>
+                <Link to={`/post/${id}`}>
                     <Typography color="primary" component="h4">
                         {title}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        {date}
-                    </Typography>
-                </CardContent>
-                <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                        <FavoriteIcon />
-                    </IconButton>
-                    <IconButton aria-label="share">
-                        <ShareIcon />
-                    </IconButton>
-                </CardActions>
-            </Card>
-        </Link>
+                </Link>
+                <Typography variant="body2" color="textSecondary" component="p">
+                    {date}
+                </Typography>
+            </CardContent>
+            <CardActions disableSpacing>
+                <IconButton aria-label="add to favorites">
+                    <FavoriteIcon />
+                </IconButton>
+                <IconButton aria-label="share">
+                    <ShareIcon />
+                </IconButton>
+            </CardActions>
+        </Card >
     );
 }
 
