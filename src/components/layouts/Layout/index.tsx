@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { AUTHORS } from '../../../utils/dataDummy'
 import Footer from '../Footer'
 import Header from '../Header'
 import SideNav from '../SideNav'
