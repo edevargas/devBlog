@@ -15,6 +15,10 @@ export const GlobalStyles = createGlobalStyle`
 	        margin: 0;
 	        padding: 0;
         }
+        body{
+                margin: 0 auto;
+                max-width: 800px;
+        }
         ul, li, h1, h2, h3, p, button {
                 margin: 0;
         }
