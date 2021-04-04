@@ -7,7 +7,7 @@ import usePostActions from '../../../actions/postsActions';
 
 const ButtonOrderList: React.FC = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-    const [order, setOrder] = useState('ASC')
+    const [order, setOrder] = useState('DESC')
     const { sortPosts } = usePostActions()
 
     const orderMenuOptions = [{
