@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist/'),
     publicPath: '',
-    filename: "bundle.js",
+    filename: "[name].js",
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js']
@@ -39,6 +39,7 @@ module.exports = {
   optimization: {
     splitChunks: {
       chunks: 'all',
+      maxSize: 244,
       cacheGroups: {
         defaultVendors: {
           filename: '[name].bundle.js',
