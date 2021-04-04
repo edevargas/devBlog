@@ -13,7 +13,7 @@ const Layout: React.FC = ({ children }) => {
     return (
         <>
             <Header handleOpenSidenav={handleSidenavToggle} isSidenavOpen={isSidenavOpen} />
-            <SideNav open={isSidenavOpen} authors={AUTHORS} notifySelection={handleSidenavToggle} />
+            <SideNav open={isSidenavOpen} notifySelection={handleSidenavToggle} />
             <main>
                 {children}
             </main>

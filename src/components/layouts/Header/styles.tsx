@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const HeaderContainer = styled.header`
     display: flex;
@@ -6,9 +6,22 @@ export const HeaderContainer = styled.header`
     width: 100%;
     padding: 10px 15px;
 `
-export const MainHeader = styled.div`
+interface MainHeaderProps {
+    readonly accentBg: boolean;
+}
+
+export const MainHeader = styled.div<MainHeaderProps>`
+${props => props.accentBg && css`
+${({ theme }) => `
+        background-color: ${theme.palette.primary.main};
+    `}
+    & button {
+        color: white;
+    }
+  `}
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 5rem;
     width: 100%;
 `

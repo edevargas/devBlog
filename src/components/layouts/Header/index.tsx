@@ -9,6 +9,7 @@ import ButtonOrderList from '../../ui/ButtonOrderList';
 import { useHistory } from "react-router-dom";
 import usePeopleActions from '../../../actions/peopleActions';
 import { useAppSelector } from '../../../hooks/redux';
+import FilterAuthor from '../FilterAuthor';
 
 type HeaderProps = {
     handleOpenSidenav: Function,
@@ -65,13 +66,17 @@ const Header: React.FC<HeaderProps> = ({ handleOpenSidenav, isSidenavOpen }) => 
     return (
         <HeaderContainer>
             {selectedPerson && <AuhtorHeader />}
-            <MainHeader>
+            <MainHeader accentBg={isSidenavOpen} >
                 <ToggleButtonAuthorsList />
-                <TextFieldSearch
-                    onChange={onFilterChange}
-                    value={filterValue}
-                    placeholder="Search by Title"
-                    ariaLabel="Search by publication Title" />
+                {isSidenavOpen
+                    ? <FilterAuthor />
+                    : <TextFieldSearch
+                        onChange={onFilterChange}
+                        value={filterValue}
+                        placeholder="Search by Title"
+                        ariaLabel="Search by publication Title" />
+                }
+
                 <ButtonOrderList />
             </MainHeader>
         </HeaderContainer>

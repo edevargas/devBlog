@@ -1,40 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import TextFieldSearch from '../../ui/TextFieldSearch'
-import { Person } from '../../../models/author'
+import React from 'react'
 import MenuItem from './MenuItem'
-import { Ul, NavHeader, SideNavTitle } from './styles'
-import { filterContains } from '../../../utils/listUtils'
+import { Ul } from './styles'
+import { useAppSelector } from '../../../hooks/redux'
 type SideNavProps = {
-    authors: Array<Person>,
     open: boolean,
     notifySelection: Function
 }
-const SideNav: React.FC<SideNavProps> = ({ authors, open, notifySelection }) => {
-    const [filterValue, setFilterValue] = useState('')
-    const [menus, setMenus] = useState(authors)
+const SideNav: React.FC<SideNavProps> = ({ open, notifySelection }) => {
 
-    useEffect(() => {
-        const authorsFiltered = filterContains(authors, filterValue, ['name', 'lastname'])
-        setMenus(authorsFiltered)
-    }, [filterValue])
+    const { filteredPeople } = useAppSelector((state) => state.people)
 
-    const onFilterChange = e => {
-        setFilterValue(e.target.value)
-    }
     return (
         <>
             { open && (
                 <nav>
-                    <NavHeader>
-                        <SideNavTitle>Authors</SideNavTitle>
-                        <TextFieldSearch
-                            value={filterValue}
-                            onChange={onFilterChange}
-                            placeholder="Looking for author?"
-                            ariaLabel="Search author" />
-                    </NavHeader>
                     <Ul>
-                        {menus.map(menu => (
+                        {filteredPeople.map(menu => (
                             <MenuItem
                                 key={menu.id}
                                 image={menu.image}
