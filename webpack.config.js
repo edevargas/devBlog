@@ -4,7 +4,10 @@ const mode = process.env.ENV || 'development';
 
 module.exports = {
   mode,
-  entry: './src/index.tsx',
+  entry: {
+    app: path.join(__dirname, 'src', 'index.tsx')
+},
+target: 'web',
   output: {
     path: path.join(__dirname, 'dist/'),
     publicPath: '',
@@ -27,7 +30,8 @@ module.exports = {
               "@babel/preset-typescript",
             ],
             plugins: [
-              'babel-plugin-styled-components'
+              "babel-plugin-styled-components",
+              "@babel/plugin-syntax-dynamic-import"
             ]
           },
         },
