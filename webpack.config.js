@@ -9,7 +9,6 @@ module.exports = {
     path: path.join(__dirname, 'dist/'),
     publicPath: '',
     filename: "bundle.js",
-    chunkFilename: "chunk-[name].[contenthash].js",
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js']
@@ -36,5 +35,16 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './public/index.html'
     })
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        defaultVendors: {
+          filename: '[name].bundle.js',
+          enforce: true
+        }
+      }
+    }
+  }
 }

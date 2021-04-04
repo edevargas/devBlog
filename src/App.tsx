@@ -8,9 +8,9 @@ import ErrorBoundary from './components/ErrorBoundary'
 import { MiniLoader } from './components/layouts/MiniLoader'
 import NotFoundPage from './pages/NotFoundPage'
 import { GlobalStyles } from './styles/GlobalStyles'
-import HomePage from './pages/HomePage'
 import Layout from './components/layouts/Layout'
 const AuthorPostsPage = React.lazy(() => import('./pages/AuthorPostsPage'))
+const HomePage = React.lazy(() => import('./pages/HomePage'))
 
 const App: React.FC = () => {
   return (
