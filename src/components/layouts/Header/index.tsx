@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { AlternativeHeaderContainer, AuthorName, HeaderContainer, MainHeader } from './styles'
+import { AlternativeHeaderContainer, AuthorName, HeaderContainer, OrderButtonDesktopContainer, MainHeader, OrderButtonContainer, SearchContainer, OrderButtonAndAuthorContainer } from './styles'
 import PeopleIcon from '@material-ui/icons/People';
 import IconButton from '@material-ui/core/IconButton';
 import TextFieldSearch from '../../ui/TextFieldSearch';
@@ -11,6 +11,7 @@ import usePeopleActions from '../../../actions/peopleActions';
 import { useAppSelector } from '../../../hooks/redux';
 import FilterAuthor from '../FilterAuthor';
 import Typography from '@material-ui/core/Typography';
+import useWindowSize from '../../../hooks/windowSize';
 
 type HeaderProps = {
     handleOpenSidenav: Function,
@@ -23,6 +24,7 @@ const Header: React.FC<HeaderProps> = ({ handleOpenSidenav, isSidenavOpen }) => 
     const { selectedPerson } = useAppSelector((state) => state.people)
     let history = useHistory()
     const { pathname } = useLocation()
+    const { isDesktop } = useWindowSize()
 
     useEffect(() => {
         filterPosts(filterValue)
@@ -87,21 +89,36 @@ const Header: React.FC<HeaderProps> = ({ handleOpenSidenav, isSidenavOpen }) => 
             return <FilterAuthor />
         }
         return (
-            <TextFieldSearch
-                onChange={onFilterChange}
-                value={filterValue}
-                placeholder="Search by Title"
-                ariaLabel="Search by publication Title" />
+            <SearchContainer>
+                <TextFieldSearch
+                    onChange={onFilterChange}
+                    value={filterValue}
+                    placeholder="Search by Title"
+                    ariaLabel="Search by publication Title" />
+            </SearchContainer>
         )
     }
 
+    const fillOrderBar = () => {
+        if (isDesktop && isAuthorPostsPath()) {
+            return (<OrderButtonAndAuthorContainer>
+                <AuhtorHeader />
+                <OrderButtonDesktopContainer>
+                    {isDesktop && 'Order posts'} <ButtonOrderList />
+                </OrderButtonDesktopContainer>
+            </OrderButtonAndAuthorContainer>)
+        }
+        return <OrderButtonContainer>{isDesktop && 'Order posts'} <ButtonOrderList /></OrderButtonContainer>
+    }
     const fillMainHeader = () => {
         if (!isPostDetailPath()) {
             return (
                 <MainHeader accentBg={isSidenavOpen} >
-                    <ToggleButtonAuthorsList />
+                    {!isDesktop && <ToggleButtonAuthorsList />}
                     {fillFilter()}
-                    <ButtonOrderList />
+
+                    {fillOrderBar()}
+
                 </MainHeader>
             )
         }
@@ -110,7 +127,7 @@ const Header: React.FC<HeaderProps> = ({ handleOpenSidenav, isSidenavOpen }) => 
 
     return (
         <HeaderContainer>
-            {isAuthorPostsPath() && <AuhtorHeader />}
+            {isAuthorPostsPath() && !isDesktop && <AuhtorHeader />}
             {isPostDetailPath() && <PostDetailHeader />}
             {fillMainHeader()}
 

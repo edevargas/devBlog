@@ -64,6 +64,10 @@ export const GlobalStyles = createGlobalStyle`
 	height: 15vh;
         }
 
-        
+        @media (min-width: 800px) {
+        #root {
+                max-width: 1000px;
+        }
+        }
         
         `

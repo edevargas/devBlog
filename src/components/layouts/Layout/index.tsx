@@ -1,21 +1,28 @@
 import React, { useState } from 'react'
+import useWindowSize from '../../../hooks/windowSize'
 import Footer from '../Footer'
 import Header from '../Header'
 import SideNav from '../SideNav'
+import { Main } from './styles'
 
 const Layout: React.FC = ({ children }) => {
     const [isSidenavOpen, setSidenavOpen] = useState(false);
-
+    const { isDesktop } = useWindowSize()
     const handleSidenavToggle = () => {
-        setSidenavOpen(!isSidenavOpen);
-    };
+        if (!isDesktop) {
+            setSidenavOpen(!isSidenavOpen);
+        }
+    }
+
     return (
         <>
             <Header handleOpenSidenav={handleSidenavToggle} isSidenavOpen={isSidenavOpen} />
-            <SideNav open={isSidenavOpen} notifySelection={handleSidenavToggle} />
-            <main>
+            <Main>
+                <SideNav
+                    open={isSidenavOpen}
+                    notifySelection={handleSidenavToggle} />
                 {children}
-            </main>
+            </Main>
             <Footer />
         </>
     )
