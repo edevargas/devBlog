@@ -1,13 +1,10 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-export const CardContainer = styled(Link)`
-  padding: 10px 15px;
-  display: flex;
-  height: 5rem;
-  align-items: center;
-  cursor: pointer;
-  background: white;
+export const AuthorNameLink = styled(Link)`
+  ${({ theme }) => `
+        color: ${theme.palette.secondary.dark};
+    `}
 `
 export const AuthorDetail = styled.section`
   display: flex;

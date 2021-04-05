@@ -12,6 +12,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Link } from 'react-router-dom'
+import { AuthorNameLink } from './styles';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -61,7 +62,7 @@ const PostCard: React.FC<PostCardProps> = ({
 
     return (
         <Card className={classes.root}>
-            <Link to={`/author/${id}`}>
+            <AuthorNameLink to={`/author/${id}`}>
                 <CardHeader
                     color="secondary"
                     className={classes.header}
@@ -74,7 +75,7 @@ const PostCard: React.FC<PostCardProps> = ({
                     title={`${name} ${lastname}`}
                     subheader={email}
                 />
-            </Link>
+            </AuthorNameLink>
             <Link to={`/post/${id}`}>
                 <CardMedia
                     className={classes.media}
