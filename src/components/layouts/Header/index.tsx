@@ -25,11 +25,6 @@ const Header: React.FC<HeaderProps> = ({ handleOpenSidenav, isSidenavOpen }) => 
     const { pathname } = useLocation()
 
     useEffect(() => {
-        console.log({ pathname })
-        console.log('isAuthor', pathname.includes('author'))
-    }, [pathname])
-
-    useEffect(() => {
         filterPosts(filterValue)
     }, [filterValue])
 
