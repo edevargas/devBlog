@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { AuthorHeaderContainer, AuthorName, HeaderContainer, MainHeader } from './styles'
+import { AlternativeHeaderContainer, AuthorName, HeaderContainer, MainHeader } from './styles'
 import PeopleIcon from '@material-ui/icons/People';
 import IconButton from '@material-ui/core/IconButton';
 import TextFieldSearch from '../../ui/TextFieldSearch';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import usePostActions from '../../../actions/postsActions';
 import ButtonOrderList from '../../ui/ButtonOrderList';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import usePeopleActions from '../../../actions/peopleActions';
 import { useAppSelector } from '../../../hooks/redux';
 import FilterAuthor from '../FilterAuthor';
+import Typography from '@material-ui/core/Typography';
 
 type HeaderProps = {
     handleOpenSidenav: Function,
@@ -21,11 +22,24 @@ const Header: React.FC<HeaderProps> = ({ handleOpenSidenav, isSidenavOpen }) => 
     const { selectPerson } = usePeopleActions()
     const { selectedPerson } = useAppSelector((state) => state.people)
     let history = useHistory()
+    const { pathname } = useLocation()
 
+    useEffect(() => {
+        console.log({ pathname })
+        console.log('isAuthor', pathname.includes('author'))
+    }, [pathname])
 
     useEffect(() => {
         filterPosts(filterValue)
     }, [filterValue])
+
+    const isAuthorPostsPath = () => {
+        return pathname.includes('/author/')
+    }
+
+    const isPostDetailPath = () => {
+        return pathname.includes('/post/')
+    }
 
     const onFilterChange = e => {
         setFilterValue(e.target.value)
@@ -57,28 +71,54 @@ const Header: React.FC<HeaderProps> = ({ handleOpenSidenav, isSidenavOpen }) => 
         </IconButton>
     )
     const AuhtorHeader: React.FC = () => (
-        <AuthorHeaderContainer>
+        <AlternativeHeaderContainer>
             <BackButton />
             <AuthorName>{`${selectedPerson?.name} ${selectedPerson?.lastname}'s posts`}</AuthorName>
-        </AuthorHeaderContainer>
+        </AlternativeHeaderContainer>
     )
+
+    const PostDetailHeader: React.FC = () => (
+        <AlternativeHeaderContainer>
+            <BackButton />
+            <Typography onClick={() => handleGoBack()} variant="body2" color="primary" component="p">
+                Return Home
+                </Typography>
+
+        </AlternativeHeaderContainer>
+    )
+
+    const fillFilter = () => {
+        if (isSidenavOpen) {
+            return <FilterAuthor />
+        }
+        return (
+            <TextFieldSearch
+                onChange={onFilterChange}
+                value={filterValue}
+                placeholder="Search by Title"
+                ariaLabel="Search by publication Title" />
+        )
+    }
+
+    const fillMainHeader = () => {
+        if (!isPostDetailPath()) {
+            return (
+                <MainHeader accentBg={isSidenavOpen} >
+                    <ToggleButtonAuthorsList />
+                    {fillFilter()}
+                    <ButtonOrderList />
+                </MainHeader>
+            )
+        }
+
+    }
 
     return (
         <HeaderContainer>
-            {selectedPerson && <AuhtorHeader />}
-            <MainHeader accentBg={isSidenavOpen} >
-                <ToggleButtonAuthorsList />
-                {isSidenavOpen
-                    ? <FilterAuthor />
-                    : <TextFieldSearch
-                        onChange={onFilterChange}
-                        value={filterValue}
-                        placeholder="Search by Title"
-                        ariaLabel="Search by publication Title" />
-                }
+            {isAuthorPostsPath() && <AuhtorHeader />}
+            {isPostDetailPath() && <PostDetailHeader />}
+            {fillMainHeader()}
 
-                <ButtonOrderList />
-            </MainHeader>
         </HeaderContainer>
     )
 }

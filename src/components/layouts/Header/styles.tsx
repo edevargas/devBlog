@@ -25,7 +25,7 @@ ${({ theme }) => `
     width: 100%;
     padding: 10px 15px;
 `
-export const AuthorHeaderContainer = styled.div`
+export const AlternativeHeaderContainer = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
