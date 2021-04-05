@@ -3,11 +3,10 @@ import styled from 'styled-components'
 export const PostContainer = styled.section`
   width: 100%;
   display: flex;
-  padding: 10px 15px;
   flex-direction: column;
 `
 export const ImageBox = styled.figure`
-      width: 100%;
+    width: 100%;
     height: 40vh;
     overflow: hidden;
     & img {
@@ -16,6 +15,7 @@ export const ImageBox = styled.figure`
 `
 export const BodyBox = styled.div`
   width: 100%;
+  padding: 10px 15px;
 `
 export const Title = styled.h1`
   ${({ theme }) => `

@@ -1,3 +1,4 @@
+import Typography from '@material-ui/core/Typography'
 import React from 'react'
 import { Publication } from '../../models/publication'
 import { BodyBox, ImageBox, PostContainer, Title, PostDate } from './styles'
@@ -14,7 +15,10 @@ const PostDetail: React.FC<PostDetailProps> = ({ post }) => {
             </ImageBox>
             <BodyBox>
                 <Title>{post?.title}</Title>
-                <p>{post?.description}</p>
+                <Typography variant="body2" color="textPrimary" component="p">
+                    {post?.description}
+                </Typography>
+
                 <PostDate>{post?.dateFormatted}</PostDate>
             </BodyBox>
         </PostContainer>
