@@ -4,7 +4,7 @@ import { postProps } from '../utils/postsUtils'
 import { render, cleanup } from '../utils/renderUtil'
 
 afterEach(cleanup)
-describe('PostCard', () => {
+describe('<PostCard />', () => {
     test('-> Should contain author name and lastname', () => {
         const { getByText } = render(<PostCard {...postProps} />)
         const nameLastname = `${postProps?.name} ${postProps?.lastname}`
