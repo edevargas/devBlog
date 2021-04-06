@@ -10,7 +10,7 @@ interface PeopleState {
     error: string | null
 }
 
-const initialState: PeopleState = {
+export const initialState: PeopleState = {
     people: [],
     filteredPeople: [],
     selectedPerson: null,

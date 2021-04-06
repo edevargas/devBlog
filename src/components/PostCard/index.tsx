@@ -62,6 +62,7 @@ const PostCard: React.FC<PostCardProps> = ({
 
     return (
         <Card className={classes.root}>
+            <p>{name}</p>
             <AuthorNameLink to={`/author/${id}`}>
                 <CardHeader
                     color="secondary"

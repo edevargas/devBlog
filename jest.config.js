@@ -15,6 +15,9 @@ module.exports = {
   moduleNameMapper: {
       '^@components/(.*)$': '<rootDir>/src/components/$1',
       '^@pages/(.*)$': '<rootDir>/src/pages/$1'
-  }
+  },
+  "testPathIgnorePatterns" : [
+    "<rootDir>/__tests__/utils/" 
+  ]
 
 }
