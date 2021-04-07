@@ -33,6 +33,9 @@ function render(ui, ...renderOptions) {
               <Route path="/author/:id">
                 <div>Author page</div>
               </Route>
+              <Route path="/post/:id">
+                <div>Post detail page</div>
+              </Route>
             </Router>
           </Provider>
         </ThemeProvider>

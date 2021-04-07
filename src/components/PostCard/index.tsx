@@ -79,7 +79,7 @@ const PostCard: React.FC<PostCardProps> = ({
                     subheader={email}
                 />
             </AuthorNameLink>
-            <Link to={`/post/${id}`}>
+            <Link to={`/post/${id}`} data-testid='link-post' >
                 <CardMedia
                     className={classes.media}
                     image={image}

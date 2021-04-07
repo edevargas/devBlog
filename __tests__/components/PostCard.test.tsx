@@ -36,6 +36,22 @@ describe('<PostCard />', () => {
             expect(getByText(/author/i)).toBeInTheDocument()
             expect(history.location.pathname).toBe(pathAuthor)
         })
+    })
+    test('-> Should have an achor link-post for redirect to post detail', async () => {
+        const { getByTestId } = render(<PostCard {...postProps} />)
+        const postDetailLink = getByTestId('link-post')
+        const pathPostDetail = `/post/${postProps.id}`
+        expect(postDetailLink).toHaveAttribute('href', pathPostDetail);
 
+    })
+    test('-> Should redirect to post detail page after click link-post', async () => {
+        const { getByText, getByTestId, history } = render(<PostCard {...postProps} />)
+        const postDetailLink = getByTestId('link-post')
+        const pathPostDetail = `/post/${postProps.id}`
+        fireEvent.click(postDetailLink)
+        await waitFor(() => {
+            expect(getByText(/post detail page/i)).toBeInTheDocument()
+            expect(history.location.pathname).toBe(pathPostDetail)
+        })
     })
 })
