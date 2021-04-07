@@ -1,4 +1,3 @@
-const date = new Date
 export const AUTHORS = [
     {
         id: 1,
@@ -6,7 +5,6 @@ export const AUTHORS = [
         lastname: 'Jeager',
         email: 'eren@eren.com',
         birthDate: 1582620822000,
-        image: 'https://www.gravatar.com/avatar/464c4cd355c42b5f432bdca8de1a1226?s=32&d=identicon&r=PG',
         posts: [
             {
                 id: 1,
@@ -32,7 +30,6 @@ export const AUTHORS = [
         lastname: 'Ackerman',
         email: 'levi@levi.com',
         birthDate: 1582620822000,
-        image: 'https://www.gravatar.com/avatar/e4da0faab31f4dd94feb632d37892103?s=32&d=identicon&r=PG',
         posts: [
             {
                 id: 3,
@@ -58,7 +55,6 @@ export const AUTHORS = [
         lastname: 'Ackerman',
         email: 'mikasa@mikasa.com',
         birthDate: 1582620822000,
-        image: 'https://www.gravatar.com/avatar?id=identicon',
         posts: [
             {
                 id: 5,
@@ -84,7 +80,6 @@ export const AUTHORS = [
         email: 'armin@armin.com',
         lastname: 'Alert',
         birthDate: 1582620822000,
-        image: 'https://www.gravatar.com/avatar?id=identicon',
         posts: [
             {
                 id: 7,
@@ -110,7 +105,6 @@ export const AUTHORS = [
         email: 'erwin@erwin.com',
         lastname: 'Smit',
         birthDate: 1582620822000,
-        image: 'https://www.gravatar.com/avatar?id=identicon',
         posts: [
             {
                 id: 9,
@@ -136,7 +130,6 @@ export const AUTHORS = [
         email: 'annie@annie.com',
         lastname: 'Leonhart',
         birthDate: 1582620822000,
-        image: 'https://www.gravatar.com/avatar?id=identicon',
         posts: [
             {
                 id: 11,

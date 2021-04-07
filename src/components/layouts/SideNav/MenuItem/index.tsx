@@ -8,6 +8,7 @@ type SideNavProps = {
     notifySelection: Function
 }
 const MenuItem: React.FC<SideNavProps> = ({ image, name, id, notifySelection }) => {
+
     const LiLink = ({ children }) => (
         <li>
             <LinkContainer onClick={() => notifySelection()} to={`/author/${id}`}>

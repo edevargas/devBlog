@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../hooks/redux"
+import mapPerson from "../mappers/mapPerson"
 import { Publication } from "../models/publication"
 import { PostsSlice } from "../reducers/postsReducer"
 import { AUTHORS } from "../utils/dataDummy"
@@ -8,6 +9,7 @@ import { filterContains, sortData } from "../utils/listUtils"
 const usePostActions = () => {
     const { posts } = useAppSelector((state) => state.posts)
     const dispatch = useAppDispatch()
+    const people = AUTHORS.map(mapPerson)
 
     const getPosts = async () => {
         const posts = mapListOfPostCardProps()
@@ -28,14 +30,17 @@ const usePostActions = () => {
     }
 
     const getPostsByUserId = async (userId: number) => {
-        const idx = AUTHORS.findIndex(a => a.id === userId)
-        const posts = AUTHORS[idx].posts
-        const authorCopy = { ...AUTHORS[idx] }
+        const idx = people.findIndex(a => a.id === userId)
+        const posts = people[idx].posts
+        const authorCopy = { ...people[idx] }
         authorCopy.posts = []
-        const postsWithAuthor = posts.map(p => {
-            return { ...p, author: authorCopy }
-        })
-        dispatch(PostsSlice.actions.setPosts(postsWithAuthor))
+        if (posts) {
+            const postsWithAuthor = posts.map(p => {
+                return { ...p, author: authorCopy }
+            })
+            dispatch(PostsSlice.actions.setPosts(postsWithAuthor))
+        }
+
     }
 
     const filterPosts = async (value: string) => {
@@ -50,19 +55,21 @@ const usePostActions = () => {
 
     const mapListOfPostCardProps = () => {
         let postsMapped: Publication[] = []
-        for (let author of AUTHORS) {
-            for (let post of author.posts) {
-                const newPost = new Publication({
-                    id: post.id,
-                    title: post.title,
-                    date: post.date,
-                    description: post.description,
-                    image: post.image
-                })
-                const authorCopy = { ...author }
-                authorCopy.posts = []
-                newPost.author = authorCopy
-                postsMapped.push(newPost)
+        for (let author of people) {
+            if (author.posts) {
+                for (let post of author.posts) {
+                    const newPost = new Publication({
+                        id: post.id,
+                        title: post.title,
+                        date: post.date,
+                        description: post.description,
+                        image: post.image
+                    })
+                    const authorCopy = { ...author }
+                    authorCopy.posts = []
+                    newPost.author = authorCopy
+                    postsMapped.push(newPost)
+                }
             }
         }
         return postsMapped

@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../hooks/redux"
+import mapPerson from "../mappers/mapPerson"
 import { Person } from "../models/author"
 import { PeopleSlice } from "../reducers/peopleReducers"
 import { AUTHORS } from "../utils/dataDummy"
@@ -9,7 +10,11 @@ const usePeopleActions = () => {
     const dispatch = useAppDispatch()
 
     const getPeople = async () => {
-        dispatch(PeopleSlice.actions.setPeople(AUTHORS))
+        const people = mapPeople(AUTHORS)
+        dispatch(PeopleSlice.actions.setPeople(people))
+    }
+    const mapPeople = (people: Array<Person>) => {
+        return people.map(mapPerson)
     }
 
     const filterPeopleByNameLastname = async (value: string) => {
