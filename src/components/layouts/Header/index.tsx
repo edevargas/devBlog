@@ -85,7 +85,7 @@ const Header: React.FC<HeaderProps> = ({ handleOpenSidenav, isSidenavOpen }) => 
     )
 
     const fillFilter = () => {
-        if (isSidenavOpen) {
+        if (isSidenavOpen && !isDesktop) {
             return <FilterAuthor />
         }
         return (
@@ -101,29 +101,26 @@ const Header: React.FC<HeaderProps> = ({ handleOpenSidenav, isSidenavOpen }) => 
 
     const fillOrderBar = () => {
         if (isDesktop && isAuthorPostsPath()) {
-            return (<OrderButtonAndAuthorContainer>
-                <AuhtorHeader />
-                <OrderButtonDesktopContainer>
-                    {isDesktop && 'Order posts'} <ButtonOrderList />
-                </OrderButtonDesktopContainer>
-            </OrderButtonAndAuthorContainer>)
+            return (
+                <OrderButtonAndAuthorContainer>
+                    <AuhtorHeader />
+                    <OrderButtonDesktopContainer>
+                        {isDesktop && 'Order posts'} <ButtonOrderList />
+                    </OrderButtonDesktopContainer>
+                </OrderButtonAndAuthorContainer>)
         }
         return <OrderButtonContainer>{isDesktop && 'Order posts'} <ButtonOrderList /></OrderButtonContainer>
     }
-    const fillMainHeader = () => {
-        if (!isPostDetailPath()) {
-            return (
-                <MainHeader accentBg={isSidenavOpen} >
+    const fillMainHeader = () => (
+        <>
+            { !isPostDetailPath() && (
+                <MainHeader accentBg={isSidenavOpen && !isDesktop} >
                     {!isDesktop && <ToggleButtonAuthorsList />}
                     {fillFilter()}
-
                     {fillOrderBar()}
-
                 </MainHeader>
-            )
-        }
-
-    }
+            )}
+        </>)
 
     return (
         <HeaderContainer>

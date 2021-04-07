@@ -9,6 +9,7 @@ const Layout: React.FC = ({ children }) => {
     const [isSidenavOpen, setSidenavOpen] = useState(false);
     const { isDesktop } = useWindowSize()
     const handleSidenavToggle = () => {
+        console.log({ isDesktop }, { isSidenavOpen })
         if (!isDesktop) {
             setSidenavOpen(!isSidenavOpen);
         }

@@ -15,7 +15,7 @@ const SideNav: React.FC<SideNavProps> = ({ open, notifySelection }) => {
 
     return (
         <>
-            { open || isDesktop && (
+            { (open || isDesktop) && (
                 <Nav>
                     {isDesktop && <SearchContainer>
                         <FilterAuthor />
