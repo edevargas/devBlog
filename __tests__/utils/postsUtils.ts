@@ -39,6 +39,7 @@ const mapPostCardProps = (p: Publication) => {
         description,
         date: dateFormatted,
         image,
+        authorId: p.author.id,
         name, lastname, profilePhoto, email
     }
 }

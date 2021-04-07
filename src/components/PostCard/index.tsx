@@ -37,6 +37,7 @@ type PostCardProps = {
     title: string
     image: string
     date: string
+    authorId: number
     name: string
     lastname: string
     email: string,
@@ -48,6 +49,7 @@ const PostCard: React.FC<PostCardProps> = ({
     title,
     image,
     date,
+    authorId,
     name,
     lastname,
     email,
@@ -63,7 +65,7 @@ const PostCard: React.FC<PostCardProps> = ({
     return (
         <Card className={classes.root}>
             <p>{name}</p>
-            <AuthorNameLink to={`/author/${id}`}>
+            <AuthorNameLink data-testid='link-author' to={`/author/${authorId}`}>
                 <CardHeader
                     color="secondary"
                     className={classes.header}
