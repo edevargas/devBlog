@@ -64,7 +64,6 @@ const PostCard: React.FC<PostCardProps> = ({
 
     return (
         <Card className={classes.root}>
-            <p>{name}</p>
             <AuthorNameLink data-testid='link-author' to={`/author/${authorId}`}>
                 <CardHeader
                     color="secondary"
@@ -79,7 +78,7 @@ const PostCard: React.FC<PostCardProps> = ({
                     subheader={email}
                 />
             </AuthorNameLink>
-            <Link to={`/post/${id}`} data-testid='link-post' >
+            <Link to={`/post/${id}`} data-testid='link-postola' >
                 <CardMedia
                     className={classes.media}
                     image={image}

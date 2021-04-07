@@ -22,7 +22,6 @@ const HomePage: React.FC = () => {
     }
 
     return (<>
-        <p>hola</p>
         <ListOfPostCard posts={filteredPosts} />
     </>)
 }
