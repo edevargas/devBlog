@@ -13,12 +13,15 @@ const HomePage: React.FC = () => {
     useEffect(() => {
         fetchData()
     }, [])
+    useEffect(() => {
+        getPosts()
+    }, [people])
 
     const fetchData = async () => {
         if (people.length === 0) {
             await getPeople()
         }
-        getPosts()
+
     }
 
     return (<>

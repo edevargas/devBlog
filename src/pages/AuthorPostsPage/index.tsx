@@ -16,12 +16,20 @@ const HomePage: React.FC = () => {
         fetchData()
     }, [id])
 
+    useEffect(() => {
+        fetchPosts()
+    }, [people])
+
     const fetchData = async () => {
+        if (people.length === 0) {
+            await getPeople()
+        }
+        fetchPosts()
 
-        await getPeople()
-
-        await findAndSelectPersonById(+id)
-        getPostsByUserId(+id)
+    }
+    const fetchPosts = async () => {
+        await findAndSelectPersonById(id)
+        await getPostsByUserId(id)
     }
 
     const fillContent = () => {

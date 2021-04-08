@@ -1,7 +1,7 @@
 import { Publication } from "./publication"
 
 export class Person {
-    id: number
+    id: string
     name: string
     lastname: string
     image?: string

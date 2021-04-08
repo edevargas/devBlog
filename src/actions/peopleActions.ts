@@ -2,15 +2,16 @@ import { useAppDispatch, useAppSelector } from "../hooks/redux"
 import mapPerson from "../mappers/mapPerson"
 import { Person } from "../models/author"
 import { PeopleSlice } from "../reducers/peopleReducers"
-import { AUTHORS } from "../utils/dataDummy"
 import { filterContains, sortData } from "../utils/listUtils"
+import httpClient from '../httpClient'
 
 const usePeopleActions = () => {
     const { people } = useAppSelector((state) => state.people)
     const dispatch = useAppDispatch()
 
     const getPeople = async () => {
-        const people = mapPeople(AUTHORS)
+        const peopleResponse = await httpClient.get('people')
+        const people = mapPeople(peopleResponse)
         dispatch(PeopleSlice.actions.setPeople(people))
     }
     const mapPeople = (people: Array<Person>) => {
@@ -22,7 +23,7 @@ const usePeopleActions = () => {
         dispatch(PeopleSlice.actions.filterPeople(filteredPeople))
     }
 
-    const findAndSelectPersonById = async (id: number) => {
+    const findAndSelectPersonById = async (id: string) => {
         const person = await findPersonById(id)
         console.log({ person })
         if (person) {
@@ -33,10 +34,10 @@ const usePeopleActions = () => {
         }
 
     }
-    const findPersonById = async (id: number) => {
-        const idx = [...AUTHORS].findIndex(p => p.id === id)
+    const findPersonById = async (id: string) => {
+        const idx = [...people].findIndex(p => p.id === id)
         if (idx >= 0) {
-            return AUTHORS[idx]
+            return people[idx]
         }
         return null
     }

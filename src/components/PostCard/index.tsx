@@ -33,11 +33,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type PostCardProps = {
-    id: number
+    id: string
     title: string
     image: string
     date: string
-    authorId: number
+    authorId: string
     name: string
     lastname: string
     email: string,

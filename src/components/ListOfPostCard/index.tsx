@@ -19,13 +19,14 @@ const ListOfPostCard: React.FC<ListOfPostCardProps> = ({ posts }) => {
         const dateConverted = timestampToDate(p.date)
         const dateFormatted = dateToReadableFormat(dateConverted)
         const image = p.image
+        const authorId = p.author.id || ''
         return {
             id,
             title,
             description,
             date: dateFormatted,
             image,
-            authorId: p.author.id,
+            authorId,
             name, lastname, profilePhoto, email
         }
     }

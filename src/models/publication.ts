@@ -1,12 +1,13 @@
 import { Person } from "./author"
 
 export class Publication {
-    id: number
+    id: string
     title: string
     date: number
-    authorId?: number
+    authorId?: string
     description: string
     author?: any | null
+    authorInfo?: any | null
     image: string
     dateFormatted?: string
     constructor({ id, title, date, description, image }) {

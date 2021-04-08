@@ -1,46 +1,48 @@
 import { useAppDispatch, useAppSelector } from "../hooks/redux"
-import mapPerson from "../mappers/mapPerson"
+import httpClient from "../httpClient"
+import mapPost from "../mappers/mapPost"
 import { Publication } from "../models/publication"
 import { PostsSlice } from "../reducers/postsReducer"
-import { AUTHORS } from "../utils/dataDummy"
-import { dateToReadableFormat, timestampToDate } from "../utils/datesUtil"
 import { filterContains, sortData } from "../utils/listUtils"
 
 const usePostActions = () => {
     const { posts } = useAppSelector((state) => state.posts)
+    const { people } = useAppSelector((state) => state.people)
     const dispatch = useAppDispatch()
-    const people = AUTHORS.map(mapPerson)
 
     const getPosts = async () => {
-        const posts = mapListOfPostCardProps()
+        const posts = mapListOfPostCardProps(people)
         dispatch(PostsSlice.actions.setPosts(posts))
     }
 
-    const getPostsById = async (id: number) => {
-        const posts = mapListOfPostCardProps()
-        const idx = posts.findIndex(p => p.id === id)
-        if (idx >= 0) {
-            const dateConverted = timestampToDate(posts[idx].date)
-            const dateFormatted = dateToReadableFormat(dateConverted)
-            posts[idx].dateFormatted = dateFormatted
-            dispatch(PostsSlice.actions.setSelectedPost(posts[idx]))
-        } else {
+    const getPostsById = async (id: string) => {
+        try {
+            const postReponse = await httpClient.get(`posts/${id}`)
+            if (postReponse) {
+                const post = mapPost(postReponse)
+                dispatch(PostsSlice.actions.setSelectedPost(post))
+            } else {
+                dispatch(PostsSlice.actions.setError(`Post with id ${id} wasn't found`))
+            }
+        } catch (error) {
+            console.log({ error })
             dispatch(PostsSlice.actions.setError(`Post with id ${id} wasn't found`))
         }
+
     }
 
-    const getPostsByUserId = async (userId: number) => {
-        const idx = people.findIndex(a => a.id === userId)
-        const posts = people[idx].posts
-        const authorCopy = { ...people[idx] }
-        authorCopy.posts = []
-        if (posts) {
-            const postsWithAuthor = posts.map(p => {
-                return { ...p, author: authorCopy }
-            })
-            dispatch(PostsSlice.actions.setPosts(postsWithAuthor))
+    const getPostsByUserId = async (userId: string) => {
+        try {
+            const postsReponse = await httpClient.get(`posts/author/${userId}`)
+            if (postsReponse) {
+                const posts = postsReponse.map(mapPost)
+                dispatch(PostsSlice.actions.setPosts(posts))
+            } else {
+                dispatch(PostsSlice.actions.setError(`Post for author with id ${userId} wasn't found`))
+            }
+        } catch (error) {
+            dispatch(PostsSlice.actions.setError(`Post for author with id ${userId} wasn't found`))
         }
-
     }
 
     const filterPosts = async (value: string) => {
@@ -53,13 +55,13 @@ const usePostActions = () => {
         dispatch(PostsSlice.actions.filterPosts(sortedPosts))
     }
 
-    const mapListOfPostCardProps = () => {
+    const mapListOfPostCardProps = (people) => {
         let postsMapped: Publication[] = []
         for (let author of people) {
             if (author.posts) {
                 for (let post of author.posts) {
                     const newPost = new Publication({
-                        id: post.id,
+                        id: post._id,
                         title: post.title,
                         date: post.date,
                         description: post.description,
@@ -72,7 +74,8 @@ const usePostActions = () => {
                 }
             }
         }
-        return postsMapped
+        const sortedPosts = sortData(postsMapped, 'date', 'DESC')
+        return sortedPosts
     }
 
     return { getPosts, filterPosts, getPostsByUserId, sortPosts, getPostsById }
