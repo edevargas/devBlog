@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3001/api'
+const BASE_URL = process.env.api || 'http://localhost:3001/api'
 /**
  * @param {string}  url url a la cual consultar
  * esta funcion detecta si es una nueva url base (comienza con http:// o https://).
