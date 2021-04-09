@@ -1,4 +1,4 @@
-const BASE_URL = process.env.api || 'http://localhost:3001/api'
+const BASE_URL = process.env.api || 'http://devblogbackend-env.eba-nv3a8tmt.us-east-2.elasticbeanstalk.com/api'
 /**
  * @param {string}  url url a la cual consultar
  * esta funcion detecta si es una nueva url base (comienza con http:// o https://).
